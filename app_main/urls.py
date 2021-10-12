@@ -5,5 +5,7 @@ urlpatterns = [
     path('', views.main, name="main"),
 
 
+    # 테스트
+    path('test', views.test, name="test"),
 
 ]
