@@ -5,8 +5,6 @@ def main(request):
     return render(request, 'main.html')
 
 
-
-
 # 테스트
 def test(request):
     return render(request, 'maintest.html')
