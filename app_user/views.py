@@ -9,4 +9,8 @@ def user(request):
 # 127.0.0.1:8000/user/userInfo
 def userInfo(request):
     return render(request, 'userInfo.html')
+
+
+def user_login(req):
+    return render(req, 'userlogin.html')
                             # templates/userInfo.html 알아서 찾아서 감
