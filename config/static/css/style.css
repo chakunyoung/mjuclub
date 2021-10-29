@@ -71,7 +71,7 @@ header{
   background: none;
 }
 
-.btn {
+.btn-custom {
   position:relative;
   left:40%;
   transform: translateX(-50%);
@@ -88,7 +88,7 @@ header{
   display:inline;
 }
 
-.btn:hover {
+.btn-custom:hover {
   background-position: right;
 }
 

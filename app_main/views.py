@@ -8,3 +8,5 @@ def main(request):
 # 테스트
 def test(request):
     return render(request, 'maintest.html')
+
+

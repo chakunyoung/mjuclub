@@ -9,6 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True
 
+#### 배포시 수정
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
@@ -23,7 +24,7 @@ INSTALLED_APPS = [
     'app_match',
     'app_main',
 
-    ################################# 앱 등록
+    ##### 앱 등록
 ]
 
 MIDDLEWARE = [
@@ -81,8 +82,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+##### AUTH_USER MODEL
+AUTH_USER_MODEL = 'app_user.User'
+
+#### 한국 언어
 LANGUAGE_CODE = 'ko-kr'
 
+#### 한국 시간
 TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
