@@ -1,7 +1,9 @@
 from pathlib import Path
 import os, json
-from django.core.exceptions import ImproperlyConfigured
 
+import pymysql
+from django.core.exceptions import ImproperlyConfigured
+pymysql.install_as_MySQLdb()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
