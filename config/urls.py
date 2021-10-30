@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
+from django.conf import settings
+from django.conf.urls.static import static
 
 from app_match import urls as match_urls
 from app_user import urls as user_urls
@@ -25,11 +27,14 @@ from app_main import urls as main_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='/main/', permanent=True)),  # 기본주소를 main/으로
+    path('', RedirectView.as_view(url='/main/', permanent=True)),  # 127.0.0.1:8000 기본주소를 127.0.0.1:8000/main/으로
     path('main/', include(main_urls)),               # 127.0.0.1:8000/
     path('user/', include(user_urls)),          # 127.0.0.1:8000/user
     path('club/', include(club_urls)),          # 127.0.0.1:8000/club
     path('match/', include(match_urls)),        # 127.0.0.1:8000/match
     # 해당 app의 urls.py로 이동
 
-]
+
+
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

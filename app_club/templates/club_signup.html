@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="{% url 'club:club_signup' %}" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <h4>동아리 명: </h4>
+        <input type="text" name="club_name">
+        <br>
+        <h4>동아리 정보: </h4>
+        <textarea name="club_info" rows="10" cols="100"></textarea>
+        <br>
+        <h4>동아리 위치: </h4>
+        <input type="text" name="club_loc">
+        <br>
+        <h4>동아리 사진: </h4>
+        <input type="file" name="club_images" accept="image/*">
+        <br>
+        <input class="btn btn-dark" type="submit" value="동아리 등록">
+    </form>
+{% endblock %}

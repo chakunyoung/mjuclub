@@ -1,24 +1,33 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html lang="ko">
-<head>
-    {% load static %}
-     <link rel="stylesheet" href="{% static 'css/club.css' %}">
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div id="maintop">동아리 정보</div>
-        <header>
-            <nav>
-                <ul>
-                    <li>어학</li>
-                    <li>봉사</li>
-                    <li>체육</li>
-                    <li>예술</li>
-                </ul>
-            </nav>
+{% block content %}
 
-        </header>
-</body>
-</html>
+    {% if user.is_club_admin == 1 %}
+        동아리 운영자 입니다.
+        <hr>
+        <a class="btn btn-primary" href={% url "club:club_signup" %}>동아리 등록</a>
+    {% else %}
+        동아리 운영자가 아닙니다.
+    {% endif %}
+    <hr>
+    {% for club in clubs %}
+        <img src="{{ club.club_images.url }}" alt="수정" width="200">
+        <hr>
+        {{ club.club_name }}
+        <hr>
+        {{ club.club_admin }}
+        <hr>
+        {{ club.club_info }}
+        <hr>
+        {{ club.club_loc }}
+        <hr>
+        {{ club.club_score }}
+        <hr>
+
+    {% endfor %}
+
+    <hr>
+
+
+
+{% endblock %}
