@@ -52,7 +52,7 @@ def user_signup(req):
         # 아이디 검증
         if User.objects.all().filter(username=username).exists():
             message = "아이디가 이미 존재함"
-            return render(req, 'user_signup.html', {'message': message})
+            return render(req, 'user_signup.html', {'message_id': message})
 
         # 비밀번호 검증
         if password1 == password2:
@@ -64,7 +64,7 @@ def user_signup(req):
             message = "아이디가 생성됨"
         else:
             message = "비밀번호가 맞지 않음"
-            return render(req, 'user_signup.html', {'message': message})
+            return render(req, 'user_signup.html', {'message_pass': message})
         # 가입완료 / 메인화면으로 복귀
         return render(req, 'main.html', {'message': message})
 
