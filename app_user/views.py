@@ -39,7 +39,8 @@ def user_signup(req):
     # 회원가입 버튼 동작
     if req.method == 'POST':
         username = req.POST.get('username')
-        password = req.POST.get('password')
+        password1 = req.POST.get('password1')
+        password2 = req.POST.get('password2')
         selected = req.POST.getlist('selected[]')
         # 일반 사용자
         if not selected:
@@ -47,10 +48,25 @@ def user_signup(req):
         # 동아리 운영자
         else:
             selected = True
-        user = User.objects.create_user(username=username, password=password, is_club_admin=selected)
-        user.save()
+
+        # 아이디 검증
+        if User.objects.all().filter(username=username).exists():
+            message = "아이디가 이미 존재함"
+            return render(req, 'user_signup.html', {'message': message})
+
+        # 비밀번호 검증
+        if password1 == password2:
+            user = User.objects.create_user(
+                username=username,
+                password=password1,
+                is_club_admin=selected)
+            user.save()
+            message = "아이디가 생성됨"
+        else:
+            message = "비밀번호가 맞지 않음"
+            return render(req, 'user_signup.html', {'message': message})
         # 가입완료 / 메인화면으로 복귀
-        return redirect('main:main')
+        return render(req, 'main.html', {'message': message})
 
     # 가입 화면
     return render(req, 'user_signup.html')
@@ -59,6 +75,4 @@ def user_signup(req):
 # 유저 로그아웃
 def user_logout(req):
     logout(req)
-    return redirect("main:main")
-
-
+    return redirect('main:main')

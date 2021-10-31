@@ -3,7 +3,7 @@ from app_user import models as user_model
 # Create your models here.
 
 
-# 동아리 (동아리 이름, 동아리 장, 동아리 정보, 동아리 위치, 동아리 점수, 동아리 사진)
+# 동아리 (동아리 이름, 동아리 장, 동아리 정보, 동아리 내용, 동아리 위치, 동아리 점수, 동아리 사진)
 # 동아리 운영자와 일대일 관계
 class Club(models.Model):
     club_name = models.CharField(max_length=20)
