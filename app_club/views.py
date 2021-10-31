@@ -15,12 +15,14 @@ def club_signup(req):
         club_name = req.POST.get('club_name')
         club_admin = req.user  # 현재 세션 user
         club_info = req.POST.get('club_info')
+        club_contents = req.POST.get('club_contents')
         club_loc = req.POST.get('club_loc')
         club_images = images = req.FILES.get('club_images')
 
         club = Club(club_name=club_name,
                     club_admin=club_admin,
                     club_info=club_info,
+                    club_contents=club_contents,
                     club_loc=club_loc,
                     club_images=club_images,
                     )
@@ -28,3 +30,13 @@ def club_signup(req):
         return redirect('club:club')
     # 동아리 등록 화면
     return render(req, 'club_signup.html')
+
+
+# 동아리 정보
+def club_info(req, name):
+    if req.method == 'GET':
+        club = Club.objects.get(club_name=name)
+        return render(req, 'club_info.html', {'club': club})
+
+    return render(req, 'club_info.html')
+

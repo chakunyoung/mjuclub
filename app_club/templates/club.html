@@ -2,32 +2,35 @@
 
 {% block content %}
 
+    <hr>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col"> </th>
+            <th scope="col">동아리 명</th>
+            <th scope="col">동아리 정보</th>
+            <th scope="col">동아리 위치</th>
+            <th scope="col">동아리 점수</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for club in clubs %}
+            <tr onclick="location.href='{% url 'club:club_info' club.club_name %}' ">
+                <th scope="row"><img src="{{ club.club_images.url }}" alt="수정" width="50" height="40"></th>
+                <td>{{ club.club_name }} </td>
+                {#                글자수 개수 제한 15                #}
+                <td>{{ club.club_info|truncatechars:15  }}</td>
+                <td> {{ club.club_loc }}</td>
+                <td> {{ club.club_score }}</td>
+
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
     {% if user.is_club_admin == 1 %}
-        동아리 운영자 입니다.
-        <hr>
         <a class="btn btn-primary" href={% url "club:club_signup" %}>동아리 등록</a>
-    {% else %}
-        동아리 운영자가 아닙니다.
     {% endif %}
-    <hr>
-    {% for club in clubs %}
-        <img src="{{ club.club_images.url }}" alt="수정" width="200">
-        <hr>
-        {{ club.club_name }}
-        <hr>
-        {{ club.club_admin }}
-        <hr>
-        {{ club.club_info }}
-        <hr>
-        {{ club.club_loc }}
-        <hr>
-        {{ club.club_score }}
-        <hr>
-
-    {% endfor %}
-
-    <hr>
-
-
 
 {% endblock %}

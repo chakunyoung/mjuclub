@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="d-flex justify-content-center">
+        <img src="{{ club.club_images.url }}" alt="수정" width="500">
+    </div>
+    <hr>
+    동아리 명: {{ club.club_name }}
+    <hr>
+    동아리 운영자: {{ club.club_admin }}
+    <hr>
+    동아리 소개
+    <br>
+    {{ club.club_contents }}
+    <hr>
+    동아리 위치: {{ club.club_loc }}
+    <hr>
+    동아리 점수: {{ club.club_score }}
+
+
+{% endblock %}
