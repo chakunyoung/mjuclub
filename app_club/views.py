@@ -5,7 +5,7 @@ from .models import Club
 # 동아리 메인화면
 def club(request):
     clubs = Club.objects.all()
-    return render(request, 'club.html', {'clubs':clubs})
+    return render(request, 'club.html', {'clubs': clubs})
 
 
 # 동아리 등록
