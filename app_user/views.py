@@ -27,10 +27,10 @@ def user_login(req):
             print("session= " + user_auth.get_session_auth_hash())
             return redirect('main:main')
         else:
-            print("인증실패")  #### 수정
-            return render(req, 'user_login.html')  # 로그인 인증 실패시 다시 로그인 화면으로
+            message = "사용자 정보가 일치하지 않습니다."
+            return render(req, 'user_login.html', {'message': message})  # 로그인 인증 실패시 다시 로그인 화면으로
 
-    # 로그인 화면
+    # GET / 로그인 화면
     return render(req, 'user_login.html')
 
 
@@ -50,7 +50,7 @@ def user_signup(req):
             selected = True
         # 아이디 검증
         if User.objects.all().filter(username=username).exists():
-            message = "아이디가 이미 존재함"
+            message = "아이디가 이미 존재합니다."
             return render(req, 'user_signup.html', {'message_id': message})
         # 비밀번호 검증
         if password1 == password2:
@@ -59,9 +59,9 @@ def user_signup(req):
                 password=password1,
                 is_club_admin=selected)
             user_create.save()
-            message = "아이디가 생성됨"
+            message = "아이디 생성 완료"
         else:
-            message = "비밀번호가 같지 않음"
+            message = "비밀번호가 같지 않습니다."
             return render(req, 'user_signup.html', {'message_pass': message})
         # 가입완료 / 메인화면으로 복귀
         return render(req, 'main.html', {'message': message})  #### 수정
