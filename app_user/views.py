@@ -25,13 +25,19 @@ def user_login(req):
         if user_auth is not None:
             login(req, user_auth)  # 로그인 / 세션id 생성 / 쿠키에 세션id 저장
             print("session= " + user_auth.get_session_auth_hash())
-            return redirect('main:main')
+            return redirect('main:main')  # 로그인 후 메인으로 이동
         else:
             message = "사용자 정보가 일치하지 않습니다."
             return render(req, 'user_login.html', {'message': message})  # 로그인 인증 실패시 다시 로그인 화면으로
 
     # GET / 로그인 화면
     return render(req, 'user_login.html')
+
+
+# 유저 로그아웃
+def user_logout(req):
+    logout(req)
+    return redirect('main:main')
 
 
 # 유저 회원가입
@@ -66,11 +72,5 @@ def user_signup(req):
         # 가입완료 / 메인화면으로 복귀
         return render(req, 'main.html', {'message': message})  #### 수정
 
-    # 가입 화면
+    # GET / 가입 화면
     return render(req, 'user_signup.html')
-
-
-# 유저 로그아웃
-def user_logout(req):
-    logout(req)
-    return redirect('main:main')
