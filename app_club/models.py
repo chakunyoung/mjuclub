@@ -20,3 +20,22 @@ class Club(models.Model):
 
     def __str__(self):
         return self.club_name
+
+
+# 동아리 후기 (동아리 이름, 유저 이름, 후기 내용, 후기 점수)
+# 동아리, 유저의 후기는 다대다 관계
+class PostScript(models.Model):
+    club_name = models.ForeignKey(
+        Club,
+        on_delete=models.CASCADE
+    )
+    user_name = models.ForeignKey(
+        user_model.User,
+        on_delete=models.CASCADE
+    )
+    post_text = models.TextField(blank=False, null=False, default="")
+    post_score = models.IntegerField(default=0, blank=True)
+
+    def __str__(self):
+        return self.post_text
+

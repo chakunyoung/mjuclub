@@ -28,7 +28,7 @@ from app_main import urls as main_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/main/', permanent=True)),  # 127.0.0.1:8000 기본주소를 127.0.0.1:8000/main/으로
-    path('main/', include(main_urls)),               # 127.0.0.1:8000/
+    path('main/', include(main_urls)),          # 127.0.0.1:8000/main
     path('user/', include(user_urls)),          # 127.0.0.1:8000/user
     path('club/', include(club_urls)),          # 127.0.0.1:8000/club
     path('match/', include(match_urls)),        # 127.0.0.1:8000/match

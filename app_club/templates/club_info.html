@@ -5,18 +5,46 @@
         <img src="{{ club.club_images.url }}" alt="수정" width="500">
     </div>
     <hr>
-    동아리 명: {{ club.club_name }}
-    <hr>
-    동아리 운영자: {{ club.club_admin }}
+    <div class="row">
+        <div class="col-md-3"><h3>동아리 명: {{ club.club_name }}</h3></div>
+        <div class="col-md-3"><h3> 동아리 운영자: {{ club.club_admin }}</h3></div>
+         <div class="col-md-3"><h3>동아리 위치: {{ club.club_loc }}</h3></div>
+
+         <div class="col-md-3"><h3>동아리 점수: {{ club.club_score }}</h3></div>
+    </div>
     <hr>
     동아리 소개
     <br>
-    <br>
     {{ club.club_contents }}
     <hr>
-    동아리 위치: {{ club.club_loc }}
-    <hr>
-    동아리 점수: {{ club.club_score }}
 
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">후기 내용</th>
+            <th scope="col">후기 작성자</th>
+            <th scope="col">후기 점수</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for p in ps %}
+            <tr>
+                <td class="col-md-8">{{ p.post_text }} </td>
+                <td class="col-md-2">{{ p.user_name }}</td>
+                <td class="col-md-2">{{ p.post_score }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <form action="{% url 'club:club_post' club.club_name %}" method="POST">
+        {% csrf_token %}
+        <h4>후기작성: </h4>
+        <br>
+        <textarea name="post_text" rows="10" cols="100"></textarea>
+        <input type="text" name="post_score">
+        <input class="btn btn-dark" type="submit" value="후기 등록">
+    </form>
 
 {% endblock %}
