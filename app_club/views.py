@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Club, PostScript
 
 
+
 # 동아리 메인화면
 def club(request):
     clubs = Club.objects.all()
@@ -36,7 +37,7 @@ def club_signup(req):
 def club_info(req, name):
     if req.method == 'GET':
         club = Club.objects.get(club_name=name)
-        print(name)
+
         # Club.clubname , PostScripts.clubname
         ps = PostScript.objects.filter(club_name__club_name=name)
         return render(req, 'club_info.html', {'club': club, 'ps': ps})
@@ -47,23 +48,18 @@ def club_info(req, name):
 # 동아리 후기 작성
 def club_post(req, name):
     if req.method == 'POST':
-        club = Club.objects.get(club_name=name)
+        club = Club.objects.get(club_name=name)  # path/club_admin get
         post_text = req.POST.get('post_text')
         post_score = req.POST.get('post_score')
 
         ps = PostScript(
-            club_name=club,
-            user_name=req.user,
+            club_name=club,  # club admin
+            user_name=req.user,  # session user
             post_text=post_text,
             post_score=post_score
         )
         ps.save()
-        print(name)
-        print(name)
-        print(name)
-        print(name)
-        print(name)
-        print(name)
-        return render(req, 'main.html')
-    # name을 club_info로 넘겨줘야함
-    return render(req, 'main.html')
+        return redirect('club:club_info', name)
+    #
+    return render(req, '')
+
