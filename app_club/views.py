@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Club, PostScript
-from django.db.models import Avg, Max, Min, Sum, Count
+from django.db.models import Avg  # Max, Min, Sum, Count
 
 
 # 동아리 메인화면
@@ -41,14 +41,14 @@ def club_info(req, name):
         # Club.clubname , PostScripts.clubname
         ps = PostScript.objects.filter(club_name__club_name=name)
         return render(req, 'club_info.html', {'club': club, 'ps': ps})
-
-    return render(req, 'club_info.html')
+    #
+    return render(req, '')
 
 
 # 동아리 후기 작성
 def club_post(req, name):
     if req.method == 'POST':
-        club = Club.objects.get(club_name=name)  # path/club_admin get
+        club = Club.objects.get(club_name=name)  # path/club_name
         post_text = req.POST.get('post_text')
         post_score = req.POST.get('post_score')
 
@@ -65,7 +65,6 @@ def club_post(req, name):
         club_score_avg = PostScript.objects.filter(club_name__club_name=name).aggregate(Avg('post_score'))
         print(club_score_avg['post_score__avg'])
         club.club_score = club_score_avg['post_score__avg']
-        # 소수점 이하는 버린채로 save
         club.save()
         return redirect('club:club_info', name)
     #

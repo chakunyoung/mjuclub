@@ -21,7 +21,7 @@
                 {#                글자수 개수 제한 15                #}
                 <td>{{ club.club_info|truncatechars:15  }}</td>
                 <td> {{ club.club_loc }}</td>
-                <td> {{ club.club_score }}</td>
+                <td> {{ club.club_score|floatformat }}</td>
 
             </tr>
         {% endfor %}

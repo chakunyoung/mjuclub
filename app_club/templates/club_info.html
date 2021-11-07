@@ -11,7 +11,7 @@
         <div class="col-md-3"><h4>동아리 명: {{ club.club_name }}</h4></div>
         <div class="col-md-3"><h4> 동아리 운영자: {{ club.club_admin }}</h4></div>
         <div class="col-md-3"><h4>동아리 위치: {{ club.club_loc }}</h4></div>
-        <div class="col-md-3"><h4>동아리 점수: {{ club.club_score }}</h4></div>
+        <div class="col-md-3"><h4>동아리 점수: {{ club.club_score|floatformat }}</h4></div>
     </div>
     <hr>
     동아리 소개
@@ -56,7 +56,7 @@
         <h4>후기 작성: </h4>
         <br>
         <div class="row">
-            <div class="col-md-12">  <textarea name="post_text" style="width: 100%; height: 100px;"> </textarea></div>
+            <div class="col-md-12">  <textarea name="post_text" style="width: 100%; height: 200px;"> </textarea></div>
             <br>
 
             {#        후기 별점     #}

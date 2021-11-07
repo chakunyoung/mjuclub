@@ -15,14 +15,14 @@ class Club(models.Model):
     club_info = models.CharField(max_length=20)
     club_contents = models.TextField(blank=False, null=False, default="")
     club_loc = models.CharField(max_length=20)
-    club_score = models.IntegerField(default=0, blank=True)
+    club_score = models.FloatField(default=0, blank=True)
     club_images = models.ImageField(blank=True, upload_to="images/club", null=True)
 
     def __str__(self):
         return self.club_name
 
 
-# 동아리 후기 (동아리 이름, 유저 이름, 후기 내용, 후기 점수)
+# 동아리 후기 (동아리 pk, 유저 pk, 후기 내용, 후기 점수)
 # 동아리, 유저의 후기는 다대다 관계
 class PostScript(models.Model):
     club_name = models.ForeignKey(
@@ -34,7 +34,7 @@ class PostScript(models.Model):
         on_delete=models.CASCADE
     )
     post_text = models.TextField(blank=False, null=False, default="")
-    post_score = models.IntegerField(default=0, blank=True)
+    post_score = models.FloatField(default=0, blank=True)
 
     def __str__(self):
         return self.post_text
