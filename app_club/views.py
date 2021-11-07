@@ -37,8 +37,8 @@ def club_info(req, name):
     if req.method == 'GET':
         club = Club.objects.get(club_name=name)
         print(name)
-        # Club.clubname , PostScripts.clubname , 특정열
-        ps = PostScript.objects.filter(club_name__club_name__icontains=name)
+        # Club.clubname , PostScripts.clubname
+        ps = PostScript.objects.filter(club_name__club_name=name)
         return render(req, 'club_info.html', {'club': club, 'ps': ps})
 
     return render(req, 'club_info.html')
