@@ -61,7 +61,7 @@ def club_post(req, name):
         )
         ps.save()
         
-        # 동아리 후기들의 평균을 작성된 club_score에 저장
+        # 동아리 후기들의 평균을 해당 동아리 인스턴스의 점수로 저장
         club_score_avg = PostScript.objects.filter(club_name__club_name=name).aggregate(Avg('post_score'))
         print(club_score_avg['post_score__avg'])
         club.club_score = club_score_avg['post_score__avg']
