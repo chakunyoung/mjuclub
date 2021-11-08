@@ -1,8 +1,12 @@
 .navbar{
     background-color: #ddf7ff;
+    position: sticky;
+    top: 0;
+    opacity:0.85;
 }
 
 .logo{
     text-align: center;
     vertical-align: middle;
+
 }

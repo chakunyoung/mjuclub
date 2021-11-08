@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Club
+from .models import Club, PostScript
+from django.db.models import Avg  # Max, Min, Sum, Count
 
 
 # 동아리 메인화면
@@ -32,11 +33,40 @@ def club_signup(req):
     return render(req, 'club_signup.html')
 
 
-# 동아리 정보
+# 동아리 세부 정보, 유저가 작성한 후기 보기
 def club_info(req, name):
     if req.method == 'GET':
         club = Club.objects.get(club_name=name)
-        return render(req, 'club_info.html', {'club': club})
 
-    return render(req, 'club_info.html')
+        # Club.clubname , PostScripts.clubname
+        ps = PostScript.objects.filter(club_name__club_name=name)
+        return render(req, 'club_info.html', {'club': club, 'ps': ps})
+    #
+    return render(req, '')
+
+
+# 동아리 후기 작성
+def club_post(req, name):
+    if req.method == 'POST':
+        club = Club.objects.get(club_name=name)  # path/club_name
+        post_text = req.POST.get('post_text')
+        post_score = req.POST.get('post_score')
+
+        # 동아리 후기 저장
+        ps = PostScript(
+            club_name=club,  # club admin
+            user_name=req.user,  # session user
+            post_text=post_text,
+            post_score=post_score
+        )
+        ps.save()
+        
+        # 동아리 후기들의 평균을 작성된 club_score에 저장
+        club_score_avg = PostScript.objects.filter(club_name__club_name=name).aggregate(Avg('post_score'))
+        print(club_score_avg['post_score__avg'])
+        club.club_score = club_score_avg['post_score__avg']
+        club.save()
+        return redirect('club:club_info', name)
+    #
+    return render(req, '')
 
