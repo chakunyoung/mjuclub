@@ -39,6 +39,7 @@ def club_info(req, name):
         club = Club.objects.get(club_name=name)
 
         # Club.clubname , PostScripts.clubname
+        # 동아리 명을 기준으로 filter
         ps = PostScript.objects.filter(club_name__club_name=name)
         return render(req, 'club_info.html', {'club': club, 'ps': ps})
     #

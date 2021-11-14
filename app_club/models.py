@@ -22,7 +22,7 @@ class Club(models.Model):
         return self.club_name
 
 
-# 동아리 후기 (동아리 pk, 유저 pk, 후기 내용, 후기 점수)
+# 동아리 후기 (동아리 fk, 유저 fk, 후기 내용, 후기 점수)
 # 동아리, 유저의 후기는 다대다 관계
 class PostScript(models.Model):
     club_name = models.ForeignKey(
