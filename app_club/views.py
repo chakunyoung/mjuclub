@@ -76,15 +76,28 @@ def club_update(req, name):
         club_loc = req.POST.get('club_loc')
         club_images = images = req.FILES.get('club_images')
 
-        club = Club(club_name=club_name,
-                    club_admin=club_admin,
-                    club_info=club_info,
-                    club_contents=club_contents,
-                    club_loc=club_loc,
-                    club_images=club_images,
-                    )
-        club.save()
-        return redirect('club:club')
+        if club_images is None:
+            print("이미지 파일을 업로드 안함")
+            club_old = Club.objects.get(club_name=name)
+            club = Club(club_name=club_name,
+                        club_admin=club_admin,
+                        club_info=club_info,
+                        club_contents=club_contents,
+                        club_loc=club_loc,
+                        club_images=club_old.club_images,
+                        )
+            club.save()
+            return redirect('club:club')
+        else:
+            club = Club(club_name=club_name,
+                        club_admin=club_admin,
+                        club_info=club_info,
+                        club_contents=club_contents,
+                        club_loc=club_loc,
+                        club_images=club_images,
+                        )
+            club.save()
+            return redirect('club:club')
 
     club = Club.objects.get(club_name=name)
     # GET / 동아리 수정 페이지 화면
