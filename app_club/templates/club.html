@@ -3,24 +3,40 @@
 
 {% block content %}
 
+
     {#    1줄에 4칸     #}
     <div class="row row-cols-1 row-cols-md-4 g-4">
-
-    {#    동아리 운영자만 보입니다.       #}
+        {#    동아리 운영자만 보입니다.       #}
         {% if user.is_club_admin == 1 %}
-            <div class="col">
-                <div class="card-header">동아리를 등록하세요. </div>
-                <div class="card">
-                    <img src="{% static 'image/mainclub.jpg' %}" class="card-img-top" width="100%" height="250" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">동아리 운영자라면 동아리를 등록할 수 있습니다.</p>
+            {% if message == 1 %}
+                {#            동아리 운영자이고, 동아리를 이미 생성함          #}
+                <div class="col">
+                    <div class="card-header">등록한 동아리: {{ club.club_name }}</div>
+                    <div class="card">
+                        <img src="{% static 'image/mainclub.jpg' %}" class="card-img-top" width="100%" height="250" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">동아리 등록을 완료했습니다.</p>
+                        </div>
+                        <a class="btn btn-primary" href="{% url "club:club_update" club.club_name %}" style="opacity: 0.8">현재 동아리 수정</a>
                     </div>
-                     <a class="btn btn-primary" href={% url "club:club_signup" style="opacity: 0.8"%} >동아리 등록</a>
                 </div>
-            </div>
+            {% else %}
+
+                {#                동아리 운영자이지만 아직 동아리를 생성하지 않음.#}
+                <div class="col">
+                    <div class="card-header">등록한 동아리가 없습니다.</div>
+                    <div class="card">
+                        <img src="{% static 'image/mainclub.jpg' %}" class="card-img-top" width="100%" height="250" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">동아리 운영자라면 동아리를 등록할 수 있습니다.</p>
+                        </div>
+                        <a class="btn btn-primary" href="{% url "club:club_signup" %}" style="opacity: 0.8">동아리 등록</a>
+                    </div>
+                </div>
+            {% endif %}
         {% endif %}
 
-    {#    등록된 동아리들        #}
+        {#    등록된 동아리들        #}
         {% for club in clubs %}
             <div class="col">
                 <div class="card-header">{{ club.club_name }} </div>

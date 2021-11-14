@@ -1,12 +1,44 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Club, PostScript
+from app_user.models import User
 from django.db.models import Avg  # Max, Min, Sum, Count
 
 
 # 동아리 메인화면
-def club(request):
+def club(req):
     clubs = Club.objects.all()
-    return render(request, 'club.html', {'clubs': clubs})
+
+    # 동아리 운영자 화면
+    user = req.user
+    if user.is_authenticated:
+        if user.is_club_admin == 1:
+            # 동아리 운영자이면서 동아리를 이미 생성함.
+            if Club.objects.filter(club_admin=user).exists():
+                club = Club.objects.get(club_admin=user)
+                print(club)
+                message = 1
+                return render(req, 'club.html', {'clubs': clubs, 'club': club, 'message': message})
+
+            # 동아리 운영자이지만 동아리를 아직 생성하지 않음.
+            else:
+                message = 0
+                return render(req, 'club.html', {'clubs': clubs, 'message': message})
+
+    # 일반유저, 비로그인 유저 화면
+    return render(req, 'club.html', {'clubs': clubs})
+
+
+# 동아리 상세 정보, 유저가 작성한 후기 보기
+def club_info(req, name):
+    if req.method == 'GET':
+        club = Club.objects.get(club_name=name)
+
+        # Club.clubname , PostScripts.clubname
+        # 동아리 명을 기준으로 filter
+        ps = PostScript.objects.filter(club_name__club_name=name)
+        return render(req, 'club_info.html', {'club': club, 'ps': ps})
+    #
+    return render(req, '')
 
 
 # 동아리 등록
@@ -33,17 +65,30 @@ def club_signup(req):
     return render(req, 'club_signup.html')
 
 
-# 동아리 세부 정보, 유저가 작성한 후기 보기
-def club_info(req, name):
-    if req.method == 'GET':
-        club = Club.objects.get(club_name=name)
+# 동아리 수정
+def club_update(req, name):
+    # 동아리 수정일 경우
+    if req.method == 'POST':
+        club_name = req.POST.get('club_name')
+        club_admin = req.user  # 현재 세션 user
+        club_info = req.POST.get('club_info')
+        club_contents = req.POST.get('club_contents')
+        club_loc = req.POST.get('club_loc')
+        club_images = images = req.FILES.get('club_images')
 
-        # Club.clubname , PostScripts.clubname
-        # 동아리 명을 기준으로 filter
-        ps = PostScript.objects.filter(club_name__club_name=name)
-        return render(req, 'club_info.html', {'club': club, 'ps': ps})
-    #
-    return render(req, '')
+        club = Club(club_name=club_name,
+                    club_admin=club_admin,
+                    club_info=club_info,
+                    club_contents=club_contents,
+                    club_loc=club_loc,
+                    club_images=club_images,
+                    )
+        club.save()
+        return redirect('club:club')
+
+    club = Club.objects.get(club_name=name)
+    # GET / 동아리 수정 페이지 화면
+    return render(req, 'club_update.html', {'club': club})
 
 
 # 동아리 후기 작성

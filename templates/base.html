@@ -23,7 +23,6 @@
                 <a class="nav-link fw-bold logo" href="{% url 'main:main' %}" style="font-size: 1.5rem;">MJU Club</a>
             </li>
         </ul>
-        <div class="collapse navbar-collapse justify-content-md-center round" id="navbarsExample10">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'user:user' %}">사용자</a>
@@ -35,23 +34,22 @@
                     <a class="nav-link" href="{% url 'match:match' %}">매칭</a>
                 </li>
             </ul>
-        </div>
 
         {% if user.is_authenticated %}
             {#            유저 세션이 존재한다면 아래화면          #}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     {% if user.is_club_admin == 1 %}
-                        <a class="nav-link" href="{% url 'main:main' %}">동아리 운영자</a>
+                        <a class="nav-link btn btn-outline-info" href="{% url 'main:main' %}">동아리 운영자</a>
                     {% else %}
-                        <a class="nav-link" href="{% url 'main:main' %}">일반 사용자</a>
+                        <a class="nav-link btn btn-outline-info" href="{% url 'main:main' %}">일반 사용자</a>
                     {% endif %}
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user:user_info' %}">{{ user.username }}님</a>
+                    <a class="nav-link btn btn-circle" href="{% url 'user:user_info' %}">{{ user.username }}님</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user:user_logout' %} ">로그아웃</a>
+                    <a class="nav-link btn btn-circle" href="{% url 'user:user_logout' %} ">로그아웃</a>
                 </li>
             </ul>
 
@@ -59,10 +57,10 @@
             {#           세션이 없다면 아래화면         #}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user:user_login' %}">로그인</a>
+                    <a class="nav-link btn btn-circle" href="{% url 'user:user_login' %}">로그인</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user:user_signup' %} ">회원가입</a>
+                    <a class="nav-link btn btn-circle" href="{% url 'user:user_signup' %} ">회원가입</a>
                 </li>
             </ul>
         {% endif %}

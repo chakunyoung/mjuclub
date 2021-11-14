@@ -10,6 +10,9 @@ urlpatterns = [
     # 동아리 등록화면
     path('signup/', views.club_signup, name="club_signup"),
 
+    # 동아리 수정화면
+    path('update/<str:name>/', views.club_update, name='club_update'),
+
     # 동아리 세부정보
     path('info/<str:name>/', views.club_info, name='club_info'),
 

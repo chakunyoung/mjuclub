@@ -54,10 +54,17 @@ def user_signup(req):
         # 동아리 운영자
         else:
             selected = True
+
+        # 아이디 공백 입력 시
+        if username == "":
+            message = "아이디를 입력 해주세요."
+            return render(req, 'user_signup.html', {'message_id': message})
+
         # 아이디 검증
         if User.objects.all().filter(username=username).exists():
             message = "아이디가 이미 존재합니다."
             return render(req, 'user_signup.html', {'message_id': message})
+
         # 비밀번호 검증
         if password1 == password2:
             user_create = User.objects.create_user(
@@ -69,6 +76,7 @@ def user_signup(req):
         else:
             message = "비밀번호가 같지 않습니다."
             return render(req, 'user_signup.html', {'message_pass': message})
+
         # 가입완료 / 메인화면으로 복귀
         return render(req, 'main.html', {'message': message})  #### 수정
 
