@@ -15,7 +15,6 @@ def club(req):
             # 동아리 운영자이면서 동아리를 이미 생성함.
             if Club.objects.filter(club_admin=user).exists():
                 club = Club.objects.get(club_admin=user)
-                print(club)
                 message = 1
                 return render(req, 'club.html', {'clubs': clubs, 'club': club, 'message': message})
 
@@ -76,8 +75,8 @@ def club_update(req, name):
         club_loc = req.POST.get('club_loc')
         club_images = images = req.FILES.get('club_images')
 
+        # 동아리 이미지를 변경하지 않음 / 기존 경로 사용
         if club_images is None:
-            print("이미지 파일을 업로드 안함")
             club_old = Club.objects.get(club_name=name)
             club = Club(club_name=club_name,
                         club_admin=club_admin,
@@ -88,6 +87,8 @@ def club_update(req, name):
                         )
             club.save()
             return redirect('club:club')
+
+        # 동아리 이미지를 변경함 / 새로운 경로 설정
         else:
             club = Club(club_name=club_name,
                         club_admin=club_admin,
@@ -122,7 +123,7 @@ def club_post(req, name):
         
         # 동아리 후기들의 평균을 해당 동아리 인스턴스의 점수로 저장
         club_score_avg = PostScript.objects.filter(club_name__club_name=name).aggregate(Avg('post_score'))
-        print(club_score_avg['post_score__avg'])
+        # print(club_score_avg['post_score__avg'])
         club.club_score = club_score_avg['post_score__avg']
         club.save()
         return redirect('club:club_info', name)
