@@ -33,12 +33,12 @@
         {#        후기 db       #}
         {% for p in ps %}
             <tr>
-                <td class="col-md-8">{{ p.post_text }} </td>
+                <td class="col-md-8"><i class="bi bi-person"></i> {{ p.post_text }} </td>
                 <td class="col-md-2">{{ p.user_name }}</td>
                 <td class="col-md-2">
-                {#        후기 점수 별점으로 치환       #}
+                    {#        후기 점수 별점으로 치환       #}
                     <div class="ratingCustom">
-                    {#        커스텀 템플릿 태그       #}
+                        {#        커스텀 템플릿 태그       #}
                         {% load range %}
                         {% for c in 0|range:p.post_score %}
                             <input type="radio" name="post_score" id="6"><label for="6">☆</label>
