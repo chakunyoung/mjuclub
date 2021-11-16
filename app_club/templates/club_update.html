@@ -19,7 +19,9 @@
         <h4>동아리 사진: </h4>
         <input type="file" name="club_images" accept="image/*" value="{{ club.club_images.url }}">
         <br>
-        <input class="btn btn-dark" type="submit" value="동아리 등록">
+        <div class="p-1 d-flex justify-content-center">
+        <input class="btn btn-dark" type="submit" value="동아리 수정" style="width: 100%">
+        </div>
     </form>
 </div>
 {% endblock %}

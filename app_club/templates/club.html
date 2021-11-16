@@ -5,7 +5,7 @@
 
 
     {#    1줄에 4칸     #}
-    <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="row row-cols-1 row-cols-md-4 g-4 p-5">
         {#    동아리 운영자만 보입니다.       #}
         {% if user.is_club_admin == 1 %}
             {% if message == 1 %}
@@ -13,7 +13,7 @@
                 <div class="col">
                     <div class="card-header">등록한 동아리: {{ club.club_name }}</div>
                     <div class="card">
-                        <img src="{% static 'image/mainclub.jpg' %}" class="card-img-top" width="100%" height="250" alt="...">
+                        <img src="{% static 'image/mainclub.jpg' %}" class="card-img-top" width="100%" height="200" alt="...">
                         <div class="card-body">
                             <p class="card-text">동아리 등록을 완료했습니다.</p>
                         </div>
@@ -55,12 +55,14 @@
         {% endfor %}
     </div>
     <hr>
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
+
+{#테스트#}
+    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
         {% for club in clubs %}
-            <div class="col mb-5">
-                <div class="card h-100">
+            <div class="col mb-4">
+                <div class="card h-80">
                     <!-- Product image-->
 
                     <img src="{{ club.club_images.url }}" class="card-img-top" width="100%" height="250" alt="...">
