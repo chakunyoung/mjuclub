@@ -39,7 +39,7 @@
                 {#유저 세션이 존재한다면 아래화면#}
                 {% if user.is_club_admin == 1 %}
                     {#동아리 운영자#}
-                    <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
+                    <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" type="button">
                 <span class="d-flex align-items-center">
                     <span class="small"><a style="color: white; text-decoration-line : none;"  href="{% url 'main:main' %}"> <i class="bi bi-person-circle"></i> 동아리 사용자</a></span>
                 </span>
@@ -60,24 +60,20 @@
                 </span>
                 </button>
 
-                <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
+                <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" type="button" style="font-size: 0.9rem;" onclick="location.href='{% url 'user:user_logout' %} ' ">
                 <span class="d-flex align-items-center">
-                    <span class="small"><a style="color: white; text-decoration-line : none;" href="{% url 'user:user_logout' %} ">로그아웃  <i class="bi bi-box-arrow-down-right"></i></a>
-                    </span>
+                    로그아웃   <i class="bi bi-box-arrow-down-right"></i>
                 </span>
                 </button>
 
             {% else %}
-                <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
+                <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" type="button" style="font-size: 0.9rem;" onclick="location.href='{% url 'user:user_login' %}' ">
                 <span class="d-flex align-items-center">
-                    <span class="small"><a style="color: white; text-decoration-line : none;" href="{% url 'user:user_login' %}"> <i class="bi bi-pencil-square"> </i> 로그인</a></span>
+                    <i class="bi bi-pencil-square"> </i> 로그인
                 </span>
                 </button>
-                <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
-                <span class="d-flex align-items-center">
-
-                    <span class="small"><a style="color: white; text-decoration-line : none;" href="{% url 'user:user_signup' %} "> <i class="bi bi-pencil-square"> </i> 회원가입</a></span>
-                </span>
+                <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" type="button" style="font-size: 0.9rem;" onclick="location.href='{% url 'user:user_signup' %}' ">
+                    <i class="bi bi-pencil-square"> </i> 회원가입
                 </button>
             {% endif %}
         </div>
