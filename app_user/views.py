@@ -59,6 +59,13 @@ def user_signup(req):
         if username == "":
             message = "아이디를 입력 해주세요."
             return render(req, 'user_signup.html', {'message_id': message})
+        if len(username) <= 4:
+            message = "아이디가 너무 짧습니다. (5자리 이상, 20자리 이하)"
+            return render(req, 'user_signup.html', {'message_id': message})
+
+        if len(username) >= 21:
+            message = "아이디가 너무 깁니다. (20자리 이하)"
+            return render(req, 'user_signup.html', {'message_id': message})
 
         # 아이디 검증
         if User.objects.all().filter(username=username).exists():
@@ -66,6 +73,12 @@ def user_signup(req):
             return render(req, 'user_signup.html', {'message_id': message})
 
         # 비밀번호 검증
+        if len(password1) <= 5:
+            message = "비밀번호가 너무 짧습니다. (6자리 이상, 20자리 이하)"
+            return render(req, 'user_signup.html', {'message_pass': message})
+        if len(password1) >= 21:
+            message = "비밀번호가 너무 깁니다. (20자리 이하)"
+            return render(req, 'user_signup.html', {'message_pass': message})
         if password1 == password2:
             user_create = User.objects.create_user(
                 username=username,
