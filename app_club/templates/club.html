@@ -3,9 +3,18 @@
 
 {% block content %}
 
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="card p-3" >
+            <font size="2.8em" color="#1E00FF">
+                현재 등록된 동아리 목록
+            </font>
+        </div>
+    </div>
+    {#    1줄에 4칸 크기 적어질수록 반응형 4 - 2 - 1    #}
+    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-xl-4 ">
 
-    {#    1줄에 4칸     #}
-    <div class="row row-cols-1 row-cols-md-4 g-4 p-5">
+
+
         {#    동아리 운영자만 보입니다.       #}
         {% if user.is_club_admin == 1 %}
             {% if message == 1 %}
@@ -23,7 +32,7 @@
             {% else %}
 
                 {#                동아리 운영자이지만 아직 동아리를 생성하지 않음.#}
-                <div class="col">
+                <div class="col" style="margin-bottom: 20px;">
                     <div class="card-header">등록한 동아리가 없습니다.</div>
                     <div class="card">
                         <img src="{% static 'image/mainclub.jpg' %}" class="card-img-top" width="100%" height="250" alt="...">
@@ -38,14 +47,15 @@
 
         {#    등록된 동아리들        #}
         {% for club in clubs %}
-            <div class="col">
+
+            <div class="col" style="margin-bottom: 20px;">
                 <div class="card-header">{{ club.club_name }} </div>
                 <div class="card">
                     <img src="{{ club.club_images.url }}" class="card-img-top" height="250" alt="...">
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><i class="bi bi-info-square-fill"></i> 동아리 정보: {{ club.club_info|truncatechars:15  }}</li>
-                            <li class="list-group-item"><i class="bi bi-star-fill"></i> 동아리 점수: {{ club.club_score|floatformat }}</li>
+                            <li class="list-group-item"><i class="bi bi-info-square-fill"></i> 동아리 유형: {{ club.club_info|truncatechars:15  }}</li>
+                            <li class="list-group-item"><i class="bi bi-star-fill"></i> 동아리 평점: {{ club.club_score|floatformat }}</li>
                             <li class="list-group-item"> <i class="bi bi-geo-alt-fill"></i> 동아리 위치: {{ club.club_loc }}</li>
                         </ul>
                     </div>
@@ -57,34 +67,34 @@
     <hr>
 
 
-{#테스트#}
-    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
-        {% for club in clubs %}
-            <div class="col mb-4">
-                <div class="card h-80">
-                    <!-- Product image-->
-
-                    <img src="{{ club.club_images.url }}" class="card-img-top" width="100%" height="250" alt="...">
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <h5 class="fw-bolder">{{ club.club_name }}</h5>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><i class="bi bi-info-square-fill"></i> 동아리 정보: {{ club.club_info|truncatechars:15  }}</li>
-                            <li class="list-group-item"><i class="bi bi-star-fill"></i> 동아리 점수: {{ club.club_score|floatformat }}</li>
-                            <li class="list-group-item"> <i class="bi bi-geo-alt-fill"></i> 동아리 위치: {{ club.club_loc }}</li>
-                        </ul>
-                        <br>
-                        <div class="text-center">
-                            <a href="{% url 'club:club_info' club.club_name %}" class="btn btn-warning" style="opacity: 0.8"><i class="bi bi-chat-right-text-fill"></i> 상세 정보</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+    {#  테스트 - 사용안하는걸로 결정   #}
+    {#    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">#}
+    {##}
+    {#        {% for club in clubs %}#}
+    {#            <div class="col mb-4">#}
+    {#                <div class="card h-80">#}
+    {#                    <!-- Product image-->#}
+    {##}
+    {#                    <img src="{{ club.club_images.url }}" class="card-img-top" width="100%" height="250" alt="...">#}
+    {#                    <!-- Product details-->#}
+    {#                    <div class="card-body p-4">#}
+    {#                        <div class="text-center">#}
+    {#                            <h5 class="fw-bolder">{{ club.club_name }}</h5>#}
+    {#                        </div>#}
+    {#                        <ul class="list-group list-group-flush">#}
+    {#                            <li class="list-group-item"><i class="bi bi-info-square-fill"></i> 동아리 정보: {{ club.club_info|truncatechars:15  }}</li>#}
+    {#                            <li class="list-group-item"><i class="bi bi-star-fill"></i> 동아리 점수: {{ club.club_score|floatformat }}</li>#}
+    {#                            <li class="list-group-item"> <i class="bi bi-geo-alt-fill"></i> 동아리 위치: {{ club.club_loc }}</li>#}
+    {#                        </ul>#}
+    {#                        <br>#}
+    {#                        <div class="text-center">#}
+    {#                            <a href="{% url 'club:club_info' club.club_name %}" class="btn btn-warning" style="opacity: 0.8"><i class="bi bi-chat-right-text-fill"></i> 상세 정보</a>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        {% endfor %}#}
+    {#    </div>#}
 
 
 {% endblock %}

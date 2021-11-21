@@ -2,8 +2,96 @@
 {% load static %}
 
 {% block content %}
+    <div class="container">
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col">
+                <div class="card p-3">
+                    <font size="3.5em" color="#1E00FF">
+                        본인의 성격 5요인을 체크하여 동아리 매칭을 진행합니다.
+                    </font>
+                </div>
+            </div>
+        </div>
 
-    매치
+        {#        성격 5요인 설명#}
+        <div class="row">
+            <div class="col col-xs-12">
+                <div class="card p-3" style="margin-bottom: 20px">
+                    <div class="btn btn-match2" style="width: 100%">개방성</div>
+                    <div class="range" style="height: 32px; text-align: center" >
+                        <font size="3em" color="#0C6639" style="height: 1px">상상력이 풍부하고 호기심이 많은 정도</font>
+                    </div>
+                    <hr class="style11">
+                    <div class="btn btn-warning" style="width: 100%">친화성</div>
+                    <div class="range" style="height: 31px; text-align: center" >
+                        <font size="3em" color="#0C6639" style="height: 1px">이타적이고 정직하고 겸손한 정도</font>
+                    </div>
+                    <hr class="style11">
+                    <div class="btn btn-info" style="width: 100%">정서적 안정성</div>
+                    <div class="range" style="height: 31px; text-align: center" >
+                        <font size="3em" color="#0C6639" style="height: 1px">안정적이고 걱정이 없는 정도</font>
+                    </div>
+                    <hr class="style11">
+                    <div class="btn btn-success" style="width: 100%">성실성</div>
+                    <div class="range" style="height: 31px; text-align: center" >
+                        <font size="3em" color="#0C6639" style="height: 1px">책임을 가지고 성실하게 수행하는 정도</font>
+                    </div>
+                    <hr class="style11">
+                    <div class="btn btn-match" style="width: 100%">외향성</div>
+                    <div class="range" style="height: 31px; text-align: center" >
+                        <font size="3em" color="#0C6639" style="height: 1px">적극적, 사교적이고 활달한 정도</font>
+                    </div>
+                    <hr class="style11">
+                    <div style="text-align: center">
+                        <font size="3em" color="#0C6639">성격 유형의 결과는 총 6가지 입니다. <br>"믿을만한", "진지한", "책임감있는", "외향적인", "활기찬", "평범한"</font>
+                    </div>
+                </div>
+            </div>
+
+
+
+            {#            성격 slider#}
+            <div class="col col-lg-8 col-xs-12 col-sm-12 col-12">
+                <div class="card p-3">
+                    <div class="btn btn-match2" style="width: 30%">개방성</div>
+                    <div class="range" >
+                        <input type="range" class="form-range" id="customRange1" min="1" max="7" step="0.5" style="height: 1px"/>
+                        <div class="d-flex justify-content-between " style="height: 7px">
+                            <small class="text-muted">1</small>
+                            <small class="text-muted">7</small>
+                        </div>
+                    </div>
+                    <hr class="style11">
+                    <div class="btn btn-warning" style="width: 30%">친화성</div>
+                    <div class="range" >
+                        <input type="range" class="form-range" id="customRange1" min="1" max="7" step="0.5" style="height: 1px"/>
+                        <div class="d-flex justify-content-between " style="height: 7px"> <small class="text-muted">1</small> <small class="text-muted">7</small> </div>
+                    </div>
+                    <hr class="style11">
+                    <div class="btn btn-info" style="width: 37%">정서적 안정성</div>
+                    <div class="range" >
+                        <input type="range" class="form-range" id="customRange1" min="1" max="7" step="0.5" style="height: 1px"/>
+                        <div class="d-flex justify-content-between " style="height: 7px"> <small class="text-muted">1</small> <small class="text-muted">7</small> </div>
+                    </div>
+                    <hr class="style11">
+                    <div class="btn btn-success" style="width: 30%">성실성</div>
+                    <div class="range" >
+                        <input type="range" class="form-range" id="customRange1" min="1" max="7" step="0.5" style="height: 1px"/>
+                        <div class="d-flex justify-content-between " style="height: 7px"> <small class="text-muted">1</small> <small class="text-muted">7</small> </div>
+                    </div>
+                    <hr class="style11">
+                    <div class="btn btn-match" style="width: 30%">외향성</div>
+                    <div class="range" >
+                        <input type="range" class="form-range" id="customRange1" min="1" max="7" step="0.5" style="height: 1px"/>
+                        <div class="d-flex justify-content-between " style="height: 7px"> <small class="text-muted">1</small> <small class="text-muted">7</small> </div>
+                    </div>
+                    <hr class="style11">
+                    <button type="submit" class="btn btn-primary" style="width: 100%; text-align: center;"><i class="bi bi-search"></i> 동아리 매칭</button>
+                </div>
+            </div>
+        </div>
+
+        {#    <input type="text" id="slider" class="slider">#}
 
 
 {% endblock %}
