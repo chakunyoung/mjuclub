@@ -7,7 +7,7 @@
 
 #### 필요한 파일
 
->mysql.cnf
+>mysql.cnf<br>
 >secrets.json
 
 
