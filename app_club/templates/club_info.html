@@ -77,14 +77,14 @@
                     </div>
                 </div>
                 <br>
-                <input class="btn btn-warning" type="submit" style="width: 97%" value="등록">
+                {% if user.is_authenticated %}
+                    <input class="btn btn-warning" type="submit" style="width: 97%" value="등록">
+                {% else %}
+                    <input class="btn btn-warning" style="width: 97%" value="등록" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                {% endif %}
             </div>
         </form>
     </div>
-
-
-
-
 
 
 {% endblock %}
