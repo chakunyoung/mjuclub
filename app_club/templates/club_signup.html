@@ -6,19 +6,44 @@
         <div class="card p-3">
             <form action="{% url 'club:club_signup' %}" enctype="multipart/form-data" method="POST">
                 {% csrf_token %}
-                <h4>동아리 명: </h4>
+                <h4>동아리 명 </h4>
                 <input type="text" class="form-control" name="club_name">
                 <br>
-                <h4>동아리 유형: </h4>
-                <input type="text" class="form-control" name="club_info">
+                <h4>동아리 유형 </h4>
+                {#                <input type="text" class="form-control" name="club_info">#}
+                <div class="input-group" style="width: 100%" >
+                    <select class="custom-select" id="inputGroupSelect02" name="club_info" style="width: 93%">
+                        <option selected>유형 선택</option>
+                        <option value="운동">운동</option>
+                        <option value="사진">사진</option>
+                        <option value="영상">영상</option>
+                        <option value="봉사">봉사</option>
+                        <option value="음악">음악</option>
+                        <option value="여행">여행</option>
+                        <option value="종교">종교</option>
+                        <option value="친목">친목</option>
+                        <option value="예술">예술</option>
+                        <option value="어학">어학</option>
+                        <option value="공부">공부</option>
+                        <option value="교육">교육</option>
+                        <option value="문화">문화</option>
+                        <option value="토론">토론</option>
+                        <option value="레저">레저</option>
+                        <option value="기타">기타</option>
+                    </select>
+                    <div class="input-group-append"  style="width: 7%">
+                        <label class="input-group-text" for="inputGroupSelect02"><i class="bi bi-justify"></i></label>
+                    </div>
+                </div>
+
                 <br>
-                <h4>동아리 소개글: </h4>
+                <h4>동아리 소개글 </h4>
                 <textarea name="club_contents" class="form-control" rows="10" cols="80"></textarea>
                 <br>
-                <h4>동아리 위치: </h4>
+                <h4>동아리 위치 </h4>
                 <input type="text" class="form-control" name="club_loc">
                 <br>
-                <h4>동아리 소개 사진: </h4>
+                <h4>동아리 소개 사진 </h4>
                 <input type="file" name="club_images" accept="image/*">
                 <br>
 
