@@ -1,24 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <form action="{% url 'club:club_update' club.club_name %}" enctype="multipart/form-data" method="POST">
-        {% csrf_token %}
-        <h4>동아리 명: </h4>
-        <input type="text" name="club_name"  value="{{ club.club_name }}">
-        <br>
-        <h4>동아리 정보: </h4>
-        <input type="text" name="club_info" value="{{ club.club_info }}">
-        <br>
-        <h4>동아리 소개: </h4>
-        <textarea name="club_contents" rows="10" cols="100" >{{ club.club_contents }}</textarea>
-        <br>
-        <h4>동아리 위치: </h4>
-        <input type="text" name="club_loc" value="{{ club.club_loc }}">
-        <br>
-        <h4>동아리 사진: </h4>
-        <input type="file" name="club_images" accept="image/*" value="{{ club.club_images.url }}">
-        <br>
-        <input class="btn btn-dark" type="submit" value="동아리 등록">
-    </form>
+    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-2 justify-content-center">
+        <div class="card p-3">
+            <form action="{% url 'club:club_update' club.club_name %}" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <h4>동아리 명: </h4>
+                <input type="text" name="club_name" class="form-control" value="{{ club.club_name }}">
+                <br>
+                <h4>동아리 유형: </h4>
+                <input type="text" name="club_info" class="form-control" value="{{ club.club_info }}">
+                <br>
+                <h4>동아리 소개글: </h4>
+                <textarea name="club_contents" class="form-control" rows="10" cols="100" >{{ club.club_contents }}</textarea>
+                <br>
+                <h4>동아리 위치: </h4>
+                <input type="text" name="club_loc" class="form-control" value="{{ club.club_loc }}">
+                <br>
+                <h4>동아리 소개 사진: </h4>
+                <input type="file" name="club_images" accept="image/*" value="{{ club.club_images.url }}">
+                <br>
+                <div class="p-1 d-flex justify-content-center">
+                    <input class="btn btn-dark" type="submit" value="동아리 수정" style="width: 100%">
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
