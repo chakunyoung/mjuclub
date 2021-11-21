@@ -24,7 +24,7 @@
 hr.style11 {
 	height: 1px;
 	background: url(http://ibrahimjabbari.com/images/hr-11.png) repeat-x 0 0;
-    border: 0;
+	border: 0;
 }
 
 .btn-match{
@@ -44,4 +44,7 @@ hr.style11 {
 	margin-bottom: 2px;
 	font-size: 0.9rem;
 
+}
+.modal-backdrop {
+    display:none;
 }
