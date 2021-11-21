@@ -28,14 +28,20 @@ hr.style11 {
 }
 
 .btn-match{
-	background: #F4E854;
 	background-color: #F4E854;
 
 }
 
 .btn-match2{
-	background: #4D2DF0;
 	color:white;
 	background-color: #4D2DF0;
+}
+
+.btn-match-result{
+	background-color: white;
+	height: 100%;
+	margin-top: 5px;
+	margin-bottom: 2px;
+	font-size: 0.9rem;
 
 }
