@@ -23,7 +23,7 @@ def match_result(req):
                       3: ['운동', '레저', '토론', '여행', '음악', ],
                       4: ['운동', '레저', '여행', '음악', ],
                       5: ['봉사', '사진', '영상', '기타', ],
-                      'message': ['믿을만한', '진지한', '책임감있는', '외향적인', '활기친', '평범한']
+                      'message': ['믿을만한', '진지한', '책임감있는', '외향적인', '활기찬', '평범한']
                       }
 
     # from 입력값 Dataframe으로
@@ -41,7 +41,7 @@ def match_result(req):
     model = tf.keras.models.load_model('app_match/modeldata/pers_model.h5')
     model.load_weights('app_match/modeldata/pers_weight.h5')
 
-    # 모델 predictss
+    # 모델 predict
     model_pred = model.predict(df)
     model_pred_label = tf.keras.backend.eval(tf.argmax(model_pred, axis=1))
     predict_result = model_pred_label[0]  # 모델결과 label
