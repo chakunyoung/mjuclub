@@ -41,7 +41,7 @@ def match_result(req):
     model = tf.keras.models.load_model('app_match/modeldata/pers_model.h5')
     model.load_weights('app_match/modeldata/pers_weight.h5')
 
-    # 모델 predict
+    # 모델 predictss
     model_pred = model.predict(df)
     model_pred_label = tf.keras.backend.eval(tf.argmax(model_pred, axis=1))
     predict_result = model_pred_label[0]  # 모델결과 label
