@@ -22,7 +22,7 @@
                 <div class="col">
                     <div class="card-header">등록한 동아리: {{ club.club_name }}</div>
                     <div class="card">
-                        <img src="{% static 'image/mainclub.jpg' %}" class="card-img-top" width="100%" height="200" alt="...">
+                        <img src="{% static 'image/mainclub.jpg' %}" class="card-img-top" width="100%" height="180" alt="...">
                         <div class="card-body">
                             <p class="card-text">동아리 등록을 완료했습니다.</p>
                         </div>
@@ -35,7 +35,7 @@
                 <div class="col" style="margin-bottom: 20px;">
                     <div class="card-header">등록한 동아리가 없습니다.</div>
                     <div class="card">
-                        <img src="{% static 'image/mainclub.jpg' %}" class="card-img-top" width="100%" height="250" alt="...">
+                        <img src="{% static 'image/mainclub.jpg' %}" class="card-img-top" width="100%" height="180" alt="...">
                         <div class="card-body">
                             <p class="card-text">동아리 운영자라면 동아리를 등록할 수 있습니다.</p>
                         </div>
@@ -51,7 +51,7 @@
             <div class="col" style="margin-bottom: 20px;">
                 <div class="card-header">{{ club.club_name }} </div>
                 <div class="card">
-                    <img src="{{ club.club_images.url }}" class="card-img-top" height="250" alt="...">
+                    <img src="{{ club.club_images.url }}" class="card-img-top" height="180" alt="...">
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><i class="bi bi-info-square-fill"></i> 동아리 유형: {{ club.club_info|truncatechars:15  }}</li>
