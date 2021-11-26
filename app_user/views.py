@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import User
 from django.contrib.auth import authenticate, login, logout
+from app_club.models import Club, PostScript
 
 
 # 유저 메인
@@ -85,13 +86,15 @@ def user_signup(req):
                 password=password1,
                 is_club_admin=selected)
             user_create.save()
-            message = "아이디 생성 완료"
+            message = "아이디가 생성되었습니다. 로그인을 해주세요."
         else:
             message = "비밀번호가 같지 않습니다."
             return render(req, 'user_signup.html', {'message_pass': message})
 
         # 가입완료 / 메인화면으로 복귀
-        return render(req, 'main.html', {'message': message})  #### 수정
+        clubs = Club.objects.all()
+        club3 = Club.objects.all().order_by('-club_admin_id')[:3]
+        return render(req, 'main.html', {'message': message, "clubs": clubs, "club3": club3})  #### 수정
 
     # GET / 가입 화면
     return render(req, 'user_signup.html')
