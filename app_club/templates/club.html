@@ -6,7 +6,7 @@
     <div class="row" style="margin-bottom: 20px;">
         <div class="col">
             <div class="card p-3" >
-                <font size="3.5em" color="#1E00FF">
+                <font size="4em" color="#61A1F2">
                     현재 등록된 동아리 목록
                 </font>
             </div>
@@ -55,8 +55,8 @@
         {% for club in clubs %}
 
             <div class="col" style="margin-bottom: 20px;">
-                <div class="card-header">{{ club.club_name }} </div>
                 <div class="card">
+                <div class="card-header">{{ club.club_name }} </div>
                     <img src="{{ club.club_images.url }}" class="card-img-top" height="180" alt="...">
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
