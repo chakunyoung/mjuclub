@@ -13,6 +13,7 @@
         </div>
     </div>
     {#    1줄에 4칸 크기 적어질수록 반응형 4 - 2 - 1    #}
+    {#    요즘 핸드폰은 사이즈가 md   #}
     <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-xl-4 ">
 
 
@@ -56,7 +57,7 @@
 
             <div class="col" style="margin-bottom: 20px;">
                 <div class="card">
-                <div class="card-header">{{ club.club_name }} </div>
+                    <div class="card-header">{{ club.club_name }} </div>
                     <img src="{{ club.club_images.url }}" class="card-img-top" height="180" alt="...">
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
