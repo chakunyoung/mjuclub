@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 
 #### 배포시 수정
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['13.124.81.248', 'mjuclub.o-r.kr']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
