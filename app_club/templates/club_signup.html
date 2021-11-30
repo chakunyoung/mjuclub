@@ -5,7 +5,9 @@
     <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-1 row-cols-xl-2 justify-content-center">
         <div class="card p-3" style="margin-bottom: 20px">
             <font size="4em" color="#61A1F2">
-                동아리 등록
+                동아리 등록<br>
+                <font size="3.5em" color="red">{{message}}</font>
+
             </font>
         </div></div>
 
@@ -13,7 +15,7 @@
         <div class="card p-3">
             <form action="{% url 'club:club_signup' %}" enctype="multipart/form-data" method="POST">
                 {% csrf_token %}
-                <h4>동아리 명 </h4>
+                <h4>동아리 명 (필수 항목)</h4>
                 <input type="text" class="form-control" name="club_name">
                 <br>
                 <h4>동아리 유형 </h4>
@@ -43,7 +45,7 @@
                 <h4>동아리 위치 </h4>
                 <input type="text" class="form-control" name="club_loc">
                 <br>
-                <h4>동아리 소개 사진 </h4>
+                <h4>동아리 소개 사진 (필수 항목)</h4>
                 <input type="file" name="club_images" accept="image/*">
                 <br>
 

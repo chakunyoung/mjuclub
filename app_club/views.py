@@ -45,11 +45,17 @@ def club_signup(req):
     # 동아리 버튼 클릭 시
     if req.method == 'POST':
         club_name = req.POST.get('club_name')
+        if club_name == "":
+            message = "동아리 이름은 필수 입력 항목입니다."
+            return render(req, 'club_signup.html', {'message': message})
         club_admin = req.user  # 현재 세션 user
         club_info = req.POST.get('club_info')
         club_contents = req.POST.get('club_contents')
         club_loc = req.POST.get('club_loc')
-        club_images = images = req.FILES.get('club_images')
+        club_images = req.FILES.get('club_images')
+        if club_images is None:
+            message = "동아리 사진 등록이 필요합니다."
+            return render(req, 'club_signup.html', {'message': message})
 
         club = Club(club_name=club_name,
                     club_admin=club_admin,
@@ -103,6 +109,13 @@ def club_update(req, name):
     club = Club.objects.get(club_name=name)
     # GET / 동아리 수정 페이지 화면
     return render(req, 'club_update.html', {'club': club})
+
+
+# 동아리 삭제
+def club_delete(req, name):
+    club = Club.objects.get(club_name=name)
+    club.delete()
+    return redirect('club:club')
 
 
 # 동아리 후기 작성
