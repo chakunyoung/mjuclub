@@ -6,6 +6,9 @@ from django.db.models import Avg  # Max, Min, Sum, Count
 
 # 동아리 메인화면
 def club(req):
+    # 동아리 수정에서 사용하는 메세지
+    if 'message' in req.session:
+        del req.session['message']
     clubs = Club.objects.all()
 
     # 동아리 운영자 화면
@@ -48,6 +51,18 @@ def club_signup(req):
         if club_name == "":
             message = "동아리 이름은 필수 입력 항목입니다."
             return render(req, 'club_signup.html', {'message': message})
+
+        club_name_o = ""
+        try:
+            club_name_o = Club.objects.get(club_name=club_name)
+            # 동아리명이 없을때 오류 발생.
+            # 동아리 명이 있으면 동아리 명이 담김.
+        except Club.DoesNotExist:  # 예외발생
+            pass
+        if club_name_o != "":  # get한 동아리 명이 있으면
+            message = "중복된 동아리 명이 존재합니다."
+            return render(req, 'club_signup.html', {'message': message})
+
         club_admin = req.user  # 현재 세션 user
         club_info = req.POST.get('club_info')
         club_contents = req.POST.get('club_contents')
@@ -72,9 +87,24 @@ def club_signup(req):
 
 # 동아리 수정
 def club_update(req, name):
+    print(name)
     # 동아리 수정일 경우
     if req.method == 'POST':
         club_name = req.POST.get('club_name')
+        if club_name == "":
+            req.session['message'] = '동아리명을 입력하세요.'
+            return redirect('club:club_update', name=name)
+        # 중복 동아리 처리
+        club_name_o = ""
+        try:
+            club_name_o = Club.objects.get(club_name=club_name)
+        except Club.DoesNotExist:  # 예외발생
+            pass
+        if club_name_o != "":  # get한 동아리가 있으면
+            if club_name_o.club_name != name:  # parameter랑 다른 동아리명을 사용하려할 때
+                req.session['message'] = '중복된 동아리명이 존재합니다.'
+                return redirect('club:club_update', name=name)
+
         club_admin = req.user  # 현재 세션 user
         club_info = req.POST.get('club_info')
         club_contents = req.POST.get('club_contents')
