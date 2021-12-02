@@ -38,8 +38,8 @@ def match_result(req):
         df = pd.DataFrame(listf)  # 모델 입력 df
         
     # 모델 로드, 가중치 로드 // 재 학습시 이 부분만 변경
-    model = tf.keras.models.load_model('app_match/modeldata/pers_model.h5')
-    model.load_weights('app_match/modeldata/pers_weight.h5')
+    model = tf.keras.models.load_model('app_match/modeldata/pers_model_normal2.h5')
+    model.load_weights('app_match/modeldata/pers_weight_normal2.h5')
 
     # 모델 predict
     model_pred = model.predict(df)
