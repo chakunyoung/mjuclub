@@ -5,7 +5,7 @@
 >pip install -r requirements.txt
 
 
-#### 필요한 파일
+#### 필요한 파일 (공개하지 않음)
 
 >mysql.cnf<br>
 >secrets.json

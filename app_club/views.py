@@ -143,6 +143,7 @@ def club_update(req, name):
 
 # 동아리 삭제
 def club_delete(req, name):
+    print(name)
     club = Club.objects.get(club_name=name)
     club.delete()
     return redirect('club:club')

@@ -11,10 +11,7 @@ urlpatterns = [
     path('signup/', views.club_signup, name="club_signup"),
 
     # 동아리 수정화면
-    path('update/<str:name>/', views.club_update, name='club_update'),
-
-    # 동아리 삭제
-    path('club_delete/<str:name>/', views.club_delete, name='club_delete'),
+    path('update/<str:name>/', views.club_update, name="club_update"),
 
     # 동아리 세부정보
     path('info/<str:name>/', views.club_info, name='club_info'),
@@ -22,5 +19,8 @@ urlpatterns = [
     # 동아리 이름 , session.user 로 작성
     # 오류였던것 - url patterns 가 위와 겹쳐서 여기를 인식못했음
     path('info1/<str:name>/', views.club_post, name='club_post'),
+
+    # 동아리 삭제
+    path('delete/<str:name>/', views.club_delete, name="club_delete"),
 
 ]
