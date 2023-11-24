@@ -34,7 +34,7 @@
 
 <br>
 
-### DNN 구성
+### DNN 모델 구성, 정확도 결과
 ![모델 구성도](images/model.jpg)
 ![모델 정확도](images/model_accu.jpg)
 
