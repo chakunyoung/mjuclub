@@ -38,6 +38,11 @@
 ![모델 구성도](images/model.jpg)
 ![모델 정확도](images/model_accu.jpg)
 
+<br>
+
+### 정리
+![패널](images/panels.PNG)
+
 <br><br>
 
 #### 실행시 필요한 작업
